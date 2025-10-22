@@ -11,7 +11,7 @@ fun checkPermutation(a: String, b: String): Boolean {
         m2[b[i]] = m2.getOrDefault(b[i], 0) + 1
     }
 
-    for (c in 'a' until 'z') {
+    for (c in a) {
         if (m1[c] != m2[c]) {
             return false
         }
