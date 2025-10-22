@@ -17,5 +17,5 @@ fun checkPermutation(a: String, b: String): Boolean {
         }
     }
 
-    return true
+   return true
 }
