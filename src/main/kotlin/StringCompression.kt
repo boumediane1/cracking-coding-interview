@@ -15,5 +15,5 @@ fun stringCompression(s: String): String {
         }
     }
 
-    return result
+    return if (result.isEmpty() || result.length >= s.length) s else result
 }
