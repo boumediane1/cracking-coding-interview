@@ -18,6 +18,10 @@ fun oneAway(s: String, p: String): Boolean {
     val bigger = if (s.length > p.length) s else p;
     val smaller = if (s.length < p.length) s else p;
 
+    if (bigger.length - smaller.length > 1) {
+        return false
+    }
+
     var count = 0
     var i = 0
     var j = 0
