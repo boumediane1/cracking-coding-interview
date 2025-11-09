@@ -1,20 +1,18 @@
 fun palindromePermutation(a: String): Boolean {
-    val map = mutableMapOf<Char, Int>()
+    val table = Array(128) { 0 }
 
     for (c in a) {
-        val c = c.lowercaseChar()
-        map[c] = map.getOrDefault(c, 0) + 1
+        val lower = c.lowercaseChar()
+
+        if (lower.code in 97..122) {
+            table[lower.code]++
+        }
     }
 
     var count = 0
-    for (c in 'a' until 'z') {
-        if (map[c]?.rem(2) == 1) {
-            count++
-
-            if (count == 2) {
-                return false
-            }
-        }
+    for (c in 'a'..'z') {
+        if (table[c.code] % 2 == 1) count++
+        if (count == 2) return false
     }
 
     return true
