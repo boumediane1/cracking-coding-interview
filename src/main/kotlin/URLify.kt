@@ -1,27 +1,25 @@
-fun urlify(url: String, n: Int): String {
+fun urlify(url: String, trueLength: Int): String {
     val url = url.toCharArray()
 
-    var i = n - 1
-    var end = n - 1
+    var spaces = 0
 
-    while (i >= 0) {
-        while (i >= 0 && url[i] != ' ') {
-            i--
+    for (i in 0 until trueLength) {
+        if (url[i] == ' ') {
+            spaces++
         }
+    }
 
-        if (i == -1) {
-            break
+    for (i in trueLength - 1 downTo 0) {
+        if (url[i] != ' ') {
+            url[i + spaces * 2] = url[i]
+        } else {
+            spaces--
+            url[i + spaces * 2] = '%'
+            url[i + 1 + spaces * 2] = '2'
+            url[i + 2 + spaces * 2] = '0'
+
+            if (spaces == 0) break;
         }
-
-        for (j in end downTo i + 1) {
-            url[j + 2] = url[j]
-        }
-
-        url[i] = '%'
-        url[i + 1] = '2'
-        url[i + 2] = '0'
-
-        end += 2
     }
 
     return url.joinToString("").trim()
